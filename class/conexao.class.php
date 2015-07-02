@@ -26,23 +26,26 @@ class Conexao{
 	 * estabelecer uma conexao com o banco de dados
 	 */
 	
-	function __construct($db_host = HOST, $db_user = USER , $db_pass = PASS){
+	function __construct($db_host = HOST, $db_user = USER , $db_pass = PASS, $db_name = DBNAME){
 		$this->db_host = $db_host;
 		$this->db_user = $db_user;
 		$this->db_pass = $db_pass;
-		self::getInstance();	
+		$this->db_name = $db_name;
+		$this->getInstance();	
+		$this->setDataBase();
 	}
 	
 	/** 
 	 * getInstance()
-	 * Metodo estatico que retorna a 
+	 * Metodo que retorna a 
 	 * conexao com o banco fe dados 
 	 * em caso de sucesso.
 	 * Retorna FALSE em caso de falha
 	 */
-	public static function getInstance(){
+	public function getInstance(){
 		global $tag;
-		if(self::$db_connect = mysql_connect($this->db_host, $this->db_user, $this->db_pass) or die($tag->imprime('<div class="alert alert-danger" role="alert">Conexão não estabelecida!</div>','encode'))):
+		
+		if(self::$db_connect = mysql_connect($this->db_host, $this->db_user, $this->db_pass) or die($tag->imprime('<div class="alert alert-danger" role="alert">Conexão não foi estabelecida!</div>','encode'))):
 			mysql_query("SET NAMES 'utf8'");
 			mysql_query("set character_set_client='utf8'");
 			mysql_query("set character_set_results='utf8'");
@@ -53,4 +56,17 @@ class Conexao{
 
 		return self::$db_connect;
 	}
+	
+	/**
+	 * setDataBase()
+	 * Metodo que seleciona o banco de dados 
+	 * a ser utilizado. O nome do banco passado no metodo construtor
+	 * define qual DB sera escolhido
+	 */
+	public function setDataBase(){
+		global $tag;
+		mysql_select_db($this->db_name, self::$db_connect) or die($tag->imprime('<div class="alert alert-danger" role="alert">Nome do banco de dados não reconhecido!</div>','encode'));
+	}
+	
+	
 }
