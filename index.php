@@ -3,7 +3,8 @@
 require_once 'init.php';
 
 //instancia um objeto tag para manipular as tags HTML via PHP
-$tag  = new Tags();
+$tag  	= new Tags();
+$con 	= new Conexao();
 
 $tag->html('lang="pt-br"');
 	$tag->head();
@@ -49,12 +50,20 @@ $tag->html('lang="pt-br"');
 	$tag->head;
 	
 	$tag->body('role="document"');
-	
-		new Components('menu', array('Home','Voltar','Sair'), array('?p=home','?p=voltar','?p=sair'));
+		$parametros = array();
+		$parametros['nomes']  = array('Home','Voltar','Sair');
+		$parametros['links']  = array('?p=home','?p=voltar','?p=sair');
+		$parametros['programer']  = PROGRAMER;
+		$parametros['copy']  = COPY;
+		new Components('menu', $parametros);
+
+		$tag->div('class="container"');
+			
+			new Roteador(isset($_GET['acao']) ? $_GET['acao'] : '');
+			
+		$tag->div;
 		
-		new Components('login');
-		
-		new Components('footer', array('Home','Voltar','Sair'), array('?p=home','?p=voltar','?p=sair'));
+		new Components('footer', $parametros);
 		
 		
 		
