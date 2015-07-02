@@ -1,0 +1,36 @@
+<?php
+/**
+ * @project PainelAdm
+ * @author Maickon Rangel
+ * @date 02/07/2015
+ * @contact maickon4developers@gmail.com
+ * @version 1.0
+ * @link https://github.com/maickon/PainelAdm
+ *
+ * roteador.class.php
+ * Classe responsável por rotear as páginas do 
+ * sistema, ela aceita um solicitação de ação que normalmente
+ * é uma variável via $_GET com o nome de 'acao' cada tipo de 
+ * valor armazenado na variável ação vai levar para uma página 
+ * específica dentro do sistem.
+ **/
+class Roteador{
+
+	function __construct($acao){
+		$this->rotear_pagina($acao);
+	}
+
+	function rotear_pagina($acao){
+		switch($acao):
+			case end(explode('=', ACTION_LOGIN)):require LOGIN_VALIDATION_PATH;
+			break;
+			
+			case ' ':require SERVER_NAME.PHP_SELF;
+			break;
+				
+			default: require HOME_PATH;
+			break;
+		endswitch;
+	}
+}
+?>
