@@ -6,7 +6,7 @@
  * @date 02/07/2015
  * @contact maickon4developers@gmail.com
  * @version 1.0
- * @link https://github.com/painelAdm
+ * @link https://github.com/maickon/PainelAdm
  *
  * components.class.php
  * Instancia um tipo de componente para adicionar ao site
@@ -26,16 +26,16 @@ class Components{
 	 * o parametro vai definir qual tipo de componente será instanciado.
 	 * ele pode ser footer = redapé ou menu para criar a barra de menu do site
 	 */
-	function __construct($component, $nomes = null , $links = null){
+	function __construct($component, $parametros = null){
 		global $tag;
 		switch($component):
-			case 'menu': new MenuBar($nomes, $links);
+			case 'menu': new MenuBar($parametros['nomes'], $parametros['links']);
 			break;
 		
-			case 'footer': new FooterBar($nomes, $links, PROGRAMER, COPY);
+			case 'footer': new FooterBar($parametros['nomes'], $parametros['links'], $parametros['programer'], $parametros['copy']);
 			break;
 			
-			case 'login': new Login();
+			case 'login': new Login($parametros['img']);
 			break;
 			
 			default: $tag->imprime('<div class="alert alert-danger" role="alert">Parâmeto inválido!</div>','encode');
@@ -163,9 +163,9 @@ class FooterBar{
 		e outra para cada link deste menu.
 	*/
 
-	public function __construct(array $menus, array $links, $programer, $copy){
+	public function __construct(array $nomes, array $links, $programer, $copy){
 		global $tag;
-		$this->menus = $menus;
+		$this->menus = $nomes;
 		$this->links = $links;
 		$this->programer = $programer;
 		$this->copyright = $copy;	
@@ -242,7 +242,7 @@ class Login{
 						$tag->h3;
 					$tag->div;
 					
-					$tag->form('class="form-signin" action="'.$_SERVER["PHP_SELF"].ROTALOGIN.'" method="post"');
+					$tag->form('class="form-signin" action="'.PHP_SELF.ACTION_LOGIN.'" method="post"');
 						$tag->h4('class="panel-title"');
 							$tag->imprime('Preencha os campos abaixo e faça o login.','encode');
 						$tag->h4;
