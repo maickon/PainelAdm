@@ -1,12 +1,29 @@
 <?php
 
+/**
+ * @project PainelAdm
+ * @author Maickon Rangel
+ * @date 02/07/2015
+ * @contact maickon4developers@gmail.com
+ * @version 1.0
+ * @link https://github.com/maickon/PainelAdm
+ *
+ * crud.class.php
+ * Esta classe estabelece um conexão ativa com o banco de dados no seu construtor
+ * e através dos seus métodos podemos estabelecer operações básicas no banco de dados
+ * como inserir, deletar, listar e buscar usuário.
+ * 
+ * Obs: As configurações de usuario e senha do banco de dados estão no arquivo de
+ * configuração. 
+ */
+
 class Crud{
 	private $conexao;
 	private $db = DB_NAME;
 	
 	function __construct(){
 		new Conexao();
-		$this->setConexao(Conexao::$db_connect);
+		$this->setConexao(Conexao::getDb_connect());
 	}
 	
 	/**
@@ -77,7 +94,7 @@ class Crud{
 	
 	function buscar_usuario($table, $email, $senha){
 		$senhaMd5 = ($senha);
-		$query = "SELECT * FROM {$table} WHERE login = '{$email}' AND senha = '{$senhaMd5}'";
+		$query = "SELECT * FROM {$table} WHERE login_usuario = '{$email}' AND senha_usuario = '{$senhaMd5}'";
 		$resultado = mysql_query($query) or die(mysql_error());
 		return mysql_fetch_object($resultado);
 	}
