@@ -1,4 +1,5 @@
 <?php
+
 //Definindo constantes para os caminhos base
 define(CLASSPATH, "class/");
 define(JSPATH, "js/");
@@ -35,13 +36,24 @@ define(EXTENSION,$path_parts['extension']); //php
 define(FILENAME,$path_parts['filename']); //index
 
 //Actions - links de ação do sistema
-define(ACTION_LOGIN, "?acao=login");
+define(ACTION_LOGIN, "/functions/login.php");
 
 //File - Links de arquivos do sistemas
 define(LOGIN_VALIDATION_PATH, 'functions/login.php');
 define(HOME_PATH, 'home.php');
 define(PAINEL_PATH, 'painel.php');
-define(BASE_PATH, 'PainelAdm/');
+define(BASE_PATH, 'http://127.0.0.1/PainelAdm/');
+
+//Links do painel administrativo
+define(ANUNCIOPATH, 'anuncios');
+define(BANNERPATH, 'banner');
+define(CATPATH, 'categorias');
+define(CIDADEPARH, 'cidades');
+define(CLIENTEPATH, 'clientes');
+define(GALERIASPATH, 'galerias');
+define(PATROCINADORESPATH, 'patrocinadores');
+define(SUBPATH, 'subcategorias');
+define(VIDEOSPATH, 'videos');
 
 //Usuário e senha do banco de dados
 define(USER, "root");
@@ -51,6 +63,6 @@ define(HOST, "localhost");
 
 //Nome/Título do site/projeto
 define(PROJECTTITLE, "Painel Administrativo");
-define(PROGRAMER, "Global Net Sis");
+define(PROGRAMER, 'Desenvolvido por <a href="http://www.globalnetsis.com.br/">Globalnetsis</a> todos os direitos reservados');
 define(COPY, "&copy 2015");
 
