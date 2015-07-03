@@ -12,7 +12,7 @@
  **/
 require_once 'config.php';
 
-/*
+/**
  * function __autoload()
  * Chama um arquivo de classe de forma automática
  * no momento em que um objeto é instanciado
@@ -22,5 +22,24 @@ require_once 'config.php';
  * contém o nome da pasta onde se encontram as classes.
  */
 function __autoload($class_name){
-	require_once CLASSPATH.$class_name.'.class.php';
+	//verifica se existe o arquivo
+	if(file_exists(CLASSPATH.$class_name.'.class.php')):
+		//se o arquivo existe, ele sera cerregado
+		require_once CLASSPATH.$class_name.'.class.php';
+	else:
+		//se o arquivo não existe, provavelmene ele não está sendo carregado da pasta raiz
+		//por isso será necessário voltar um diretório, por isso os ../
+		require_once '../config.php';
+		//verifica se o arquivo existe voltando um diretório
+		if(file_exists('../'.CLASSPATH.$class_name.'.class.php')):
+			//se existe carrega
+			require_once '../'.CLASSPATH.$class_name.'.class.php';
+		else:
+			//se não conseguir carregar, exibe uma mensagem de erro
+			echo '<div class="alert alert-danger" role="alert">';
+				echo 'Arquivo de classe não encontrado.';
+			echo '</div>';
+		endif;
+	endif;
+		
 }
