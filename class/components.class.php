@@ -38,6 +38,9 @@ class Components{
 			case 'login': new Login($parametros['img']);
 			break;
 			
+			case 'painel': new Painel($parametros['nomes'], $parametros['links'],$parametros['title'], $parametros['content']);
+			break;
+			
 			default: $tag->imprime('<div class="alert alert-danger" role="alert">Parâmeto inválido!</div>','encode');
 		endswitch;
 	}
@@ -130,6 +133,16 @@ class MenuBar{
 							endif;				
 						endfor;
 						
+						$sessao = new Sessao();
+						$login = $sessao->getVar('login');
+						$pass = $sessao->getVar('senha');
+						if(isset($login) || isset($pass)):
+							$this->tag->li();
+								$this->tag->a('href="'.PAINEL_PATH.'"');
+									$this->tag->imprime("Você está logado como $login",'encode');
+								$this->tag->a;
+							$this->tag->li;	
+						endif;
 					$this->tag->ul;
 											
 				$this->tag->div;//nav-collapse collapse
@@ -187,7 +200,7 @@ class FooterBar{
 				for($m=0; $m<count($this->menus); $m++):
 					$this->tag->imprime(' - ');
 					$this->tag->a('href="index.php'.$this->links[$m].'" class="footer-fonte"');
-						$this->tag->imprime($this->menus[$m],'decode');
+						$this->tag->imprime($this->menus[$m]);
 					$this->tag->a;
 		
 					if($m == count($this->menus)-1):
@@ -195,16 +208,16 @@ class FooterBar{
 						$this->tag->br();
 						$this->tag->br();
 						
-						$this->tag->a('href="https://www.facebook.com/maickon.rangel" target="blank" class="footer-fonte"');
-							$this->tag->imprime($this->programer);
-						$this->tag->a;
+					
+						$this->tag->imprime($this->programer);
+					
 						
 						$this->tag->br();
 						$this->tag->br();
 						
-						$this->tag->a('href="index.php" class="footer-fonte"');
-							$this->tag->imprime($this->copyright);
-						$this->tag->a;
+						
+						$this->tag->imprime($this->copyright);
+						
 						
 						$this->tag->br();
 						$this->tag->br();
@@ -242,7 +255,7 @@ class Login{
 						$tag->h3;
 					$tag->div;
 					
-					$tag->form('class="form-signin" action="'.PHP_SELF.ACTION_LOGIN.'" method="post"');
+					$tag->form('class="form-signin" action="'.LOGIN_VALIDATION_PATH.'" method="post"');
 						$tag->h4('class="panel-title"');
 							$tag->imprime('Preencha os campos abaixo e faça o login.','encode');
 						$tag->h4;
@@ -251,7 +264,7 @@ class Login{
 							$tag->imprime('Email address');
 						$tag->label;
 						
-						$tag->input('type="email" id="inputEmail" name="login" class="form-control" placeholder="Email" required autofocus');
+						$tag->input('type="text" id="inputLogin" name="login" class="form-control" placeholder="Login" required autofocus');
 						$tag->label('for="inputPassword" class="sr-only"');
 							$tag->imprime('Password');
 						$tag->label;
@@ -268,5 +281,59 @@ class Login{
 				$tag->div;
 			$tag->div;
 		$tag->div;
+	}
+}
+
+class Painel{
+	private $nomes;
+	private $links;
+	
+	function __construct(array $nomes, array $links, array $title, array $content){
+		$this->nomes = $nomes;
+		$this->links = $links;
+		$this->title = $title;
+		$this->content = $content;
+		$this->show();
+	}
+	
+	function painel(){
+		global $tag;
+		
+		$tag->div('id="painel_adm"');
+			$tag->div('class="bs-example"');
+				$tag->ul('class="nav nav-tabs"');
+				
+					for($m=0; $m<count($this->nomes); $m++):
+						$tag->li();
+							$tag->a('data-toggle="tab" href="#'.$this->links[$m].'"');
+								$tag->imprime($this->nomes[$m]);
+							$tag->a;
+						$tag->li;
+					endfor;
+					
+				$tag->ul; //close ul
+				
+				$tag->div('class="tab-content"');
+					
+					for($m=0; $m<count($this->nomes); $m++):
+						$tag->div('id="'.$this->links[$m].'" class="tab-pane fade"');
+							$tag->h3();
+								$tag->imprime($this->title[$m]);
+							$tag->h3;
+							
+							$tag->p();
+								$tag->imprime($this->content[$m]);
+							$tag->p;
+						$tag->div;
+					endfor;
+					
+				$tag->div;
+					
+			$tag->div;
+		$tag->div;
+	}
+	
+	public function show(){
+		$this->painel();
 	}
 }
