@@ -67,6 +67,20 @@ class Conexao{
 		global $tag;
 		mysql_select_db($this->db_name, self::$db_connect) or die($tag->imprime('<div class="alert alert-danger" role="alert">Nome do banco de dados não reconhecido!</div>','encode'));
 	}
+	/**
+	 * @return the $db_connect
+	 */
+	public static function getDb_connect() {
+		return Conexao::$db_connect;
+	}
+
+	/**
+	 * @param boolean $db_connect
+	 */
+	public static function setDb_connect($db_connect) {
+		Conexao::$db_connect = $db_connect;
+	}
+
 	
 	
 }
