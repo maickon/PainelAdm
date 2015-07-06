@@ -18,7 +18,7 @@ require_once 'header.php';
 	
 $parametros = array();
 $parametros['nomes']  = array('Home','Voltar','Sair');
-$parametros['links']  = array('#','#','?logoff=true');
+$parametros['links']  = array(BASE_PATH,'javascript:history.go(-1)','?logoff=true');
 $parametros['programer']  = PROGRAMER;
 $parametros['copy']  = COPY;
 new Components('menu', $parametros);
@@ -43,11 +43,11 @@ $tag->div('class="container white"');
 			$tag->imprime('Boa tarde, hoje é Sexta-feira, 03 de julho de 2015','encode');
 		$tag->smal;
 	$tag->p;
-	
+
 	$parametros['nomes'] 	= array(utf8_encode('Anúncios'),'Banners','Categorias','Cidades','Clientes','Galeria de Fotos','Patrocinadores','Subcategorias',utf8_encode('Vídeos'));
 	$parametros['links']  	= array(ANUNCIOPATH,BANNERPATH,CATPATH,CIDADEPARH,CLIENTEPATH,GALERIASPATH,PATROCINADORESPATH,SUBPATH,VIDEOSPATH);
-	$parametros['title']  	= array('Anúncios','Banners','Categorias','Cidades','Clientes','Galeria de Fotos','Patrocinadores','Subcategorias','Vídeos');
-	$parametros['content']  = array('Anúncios','Banners','Categorias','Cidades','Clientes','Galeria de Fotos','Patrocinadores','Subcategorias','Vídeos');
+	$parametros['title']  	= array(utf8_encode('Anúncios'),'Banners','Categorias','Cidades','Clientes','Galeria de Fotos','Patrocinadores','Subcategorias','Vídeos');
+	$parametros['content']  = array(ANUNCIOPATHINDEX,BANNERPATHINDEX,CATPATHINDEX,CIDADEPARHINDEX,CLIENTEPATHINDEX,GALERIASPATHINDEX,PATROCINADORESPATHINDEX,SUBPATHINDEX,VIDEOSPATHINDEX);
 	new Components('painel', $parametros);	
 	
 $tag->div;

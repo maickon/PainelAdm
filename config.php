@@ -5,6 +5,7 @@ define(CLASSPATH, "class/");
 define(JSPATH, "js/");
 define(CSSPATH, "css/");
 define(IMGPATH, "img/");
+define(PAGESPATH, "pages/");
 
 // Retorna o domínio do servidor
 define(SERVER_NAME,$_SERVER['SERVER_NAME']); //127.0.0.1
@@ -54,6 +55,17 @@ define(GALERIASPATH, 'galerias');
 define(PATROCINADORESPATH, 'patrocinadores');
 define(SUBPATH, 'subcategorias');
 define(VIDEOSPATH, 'videos');
+
+//Caminho da pagina inicial de cada categoria
+define(ANUNCIOPATHINDEX, PAGESPATH.ANUNCIOPATH.'/index.php');
+define(BANNERPATHINDEX, PAGESPATH.BANNERPATH.'/index.php');
+define(CATPATHINDEX, PAGESPATH.CATPATH.'/index.php');
+define(CIDADEPARHINDEX, PAGESPATH.CIDADEPARH.'/index.php');
+define(CLIENTEPATHINDEX, PAGESPATH.CLIENTEPATH.'/index.php');
+define(GALERIASPATHINDEX, PAGESPATH.GALERIASPATH.'/index.php');
+define(PATROCINADORESPATHINDEX, PAGESPATH.PATROCINADORESPATH.'/index.php');
+define(SUBPATHINDEX, PAGESPATH.SUBPATH.'/index.php');
+define(VIDEOSPATHINDEX, PAGESPATH.VIDEOSPATH.'/index.php');
 
 //Usuário e senha do banco de dados
 define(USER, "root");

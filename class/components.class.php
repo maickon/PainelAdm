@@ -322,7 +322,7 @@ class Painel{
 							$tag->h3;
 							
 							$tag->p();
-								$tag->imprime($this->content[$m]);
+								require_once "{$this->content[$m]}";
 							$tag->p;
 						$tag->div;
 					endfor;

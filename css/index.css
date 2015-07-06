@@ -29,3 +29,7 @@ body{
 .bs-example{
 	margin: 20px;
 }
+
+.form-horizontal{
+    width: auto;
+}
