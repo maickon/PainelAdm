@@ -31,7 +31,7 @@ $tag->div('class="container white"');
 	$tag->hr();
 	$tag->p();
 		$tag->smal();
-			$tag->imprime('Olá','encode');
+			$tag->imprime('OlÃ¡');
 			$tag->b();
 				$tag->imprime($login);
 			$tag->b;
@@ -40,13 +40,13 @@ $tag->div('class="container white"');
 	
 	$tag->p();
 		$tag->smal();
-			$tag->imprime('Boa tarde, hoje é Sexta-feira, 03 de julho de 2015','encode');
+			$tag->imprime('Boa tarde, hoje Ã© Sexta-feira, 03 de julho de 2015');
 		$tag->smal;
 	$tag->p;
 
-	$parametros['nomes'] 	= array(utf8_encode('Anúncios'),'Banners','Categorias','Cidades','Clientes','Galeria de Fotos','Patrocinadores','Subcategorias',utf8_encode('Vídeos'));
+	$parametros['nomes'] 	= array('AnÃºncios','Banners','Categorias','Cidades','Clientes','Galeria de Fotos','Patrocinadores','Subcategorias','VÃ­deos');
 	$parametros['links']  	= array(ANUNCIOPATH,BANNERPATH,CATPATH,CIDADEPARH,CLIENTEPATH,GALERIASPATH,PATROCINADORESPATH,SUBPATH,VIDEOSPATH);
-	$parametros['title']  	= array(utf8_encode('Anúncios'),'Banners','Categorias','Cidades','Clientes','Galeria de Fotos','Patrocinadores','Subcategorias','Vídeos');
+	$parametros['title']  	= array('AnÃºncios','Banners','Categorias','Cidades','Clientes','Galeria de Fotos','Patrocinadores','Subcategorias','VÃ­deos');
 	$parametros['content']  = array(ANUNCIOPATHINDEX,BANNERPATHINDEX,CATPATHINDEX,CIDADEPARHINDEX,CLIENTEPATHINDEX,GALERIASPATHINDEX,PATROCINADORESPATHINDEX,SUBPATHINDEX,VIDEOSPATHINDEX);
 	new Components('painel', $parametros);	
 	

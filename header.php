@@ -10,16 +10,16 @@
  * @link https://github.com/maickon/PainelAdm
  *
  * header.php
- * Arquivo responsável pela apresentação de header do site.
- * Ele carrega o arquivo init.php, este arquivo carrega a função
- * __autoload($class_name). Com esta função as classes podem ser carregadas 
- * através do require_once no momento de sua instanciação.
- * Além disso o arquivo init.php carrega o arquivo config.php através do
- * require_once, neste arquivo conta a definição de todoas os termos necessários
- * para o sistema como links permanentes, nome de pastas, título do site, mensagens e etc.
+ * Arquivo responsÃ¡vel pela apresentaÃ§Ã£o de header do site.
+ * Ele carrega o arquivo init.php, este arquivo carrega a funÃ§Ã£o
+ * __autoload($class_name). Com esta funÃ§Ã£o as classes podem ser carregadas 
+ * atravÃ©s do require_once no momento de sua instanciaÃ§Ã£o.
+ * AlÃ©m disso o arquivo init.php carrega o arquivo config.php atravÃ©s do
+ * require_once, neste arquivo conta a definiÃ§Ã£o de todoas os termos necessÃ¡rios
+ * para o sistema como links permanentes, nome de pastas, tÃ­tulo do site, mensagens e etc.
  * 
- * Em seguida é declarado duas variáveis que são objetos. Um referente a tag e o outro representa 
- * uma conexão ativa com o banco de dados.
+ * Em seguida Ã© declarado duas variÃ¡veis que sÃ£o objetos. Um referente a tag e o outro representa 
+ * uma conexÃ£o ativa com o banco de dados.
  */
 
 require_once 'init.php';
@@ -30,7 +30,8 @@ $con 	= new Conexao();
 
 $tag->html('lang="pt-br"');
 	$tag->head();
-		$tag->meta('charset="utf-8"');
+	
+		$tag->meta('http-equiv="Content-Type" content="text/html;charset=utf-8""');
 		$tag->meta('http-equiv="X-UA-Compatible" content="IE=edge"');
 		$tag->meta('name="viewport" content="width=device-width, initial-scale=1"');
 		//<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
@@ -52,7 +53,7 @@ $tag->html('lang="pt-br"');
 		$tag->link('href="'.CSSPATH.'index.css" rel="stylesheet"');
 		
 		$tag->link('href="http://getbootstrap.com/examples/theme/theme.css"');
-		
+
 		//<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
 		//<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 		$tag->script('src="'.JSPATH.'arquivo.js"');
